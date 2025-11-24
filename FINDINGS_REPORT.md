@@ -11,10 +11,10 @@
 
 | Document | Purpose |
 |----------|---------|
-| [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md) | Visual summary with charts and key takeaways |
-| [COMPETITIVE_ANALYSIS.md](COMPETITIVE_ANALYSIS.md) | Full competitive model and go-to-market strategy |
-| [ML_MODEL_REPORT.md](ML_MODEL_REPORT.md) | **NEW**: Ensemble learning model and predictions |
-| [METHODOLOGY.md](METHODOLOGY.md) | Statistical methods, assumptions, and references |
+| [EXECUTIVE_SUMMARY.md](reports/EXECUTIVE_SUMMARY.md) | Visual summary with charts and key takeaways |
+| [COMPETITIVE_ANALYSIS.md](reports/COMPETITIVE_ANALYSIS.md) | Full competitive model and go-to-market strategy |
+| [ML_MODEL_REPORT.md](reports/ML_MODEL_REPORT.md) | Behavioral ML model (circular features excluded) |
+| [METHODOLOGY.md](reports/METHODOLOGY.md) | Statistical methods, assumptions, and references |
 | `outputs/` | Generated figures and CSV tables |
 
 ### Generated Visualizations
@@ -310,6 +310,7 @@ This survey explores pizza preferences among RIT students to determine what make
 | 2025-11-24 | 1.1 | Added visualizations, executive summary, cross-linked documentation |
 | 2025-11-24 | 2.0 | **Competitive Model**: Weighted scoring, segmentation, regression, threat ranking |
 | 2025-11-24 | 3.0 | **ML Model**: Ensemble learning (RF, GB, LR) for prediction and explanation |
+| 2025-11-24 | 3.1 | **Fix**: Removed circular feature (states_prefer_local) from ML model; reorganized repo structure |
 
 ---
 
@@ -317,19 +318,19 @@ This survey explores pizza preferences among RIT students to determine what make
 
 | File | Purpose |
 |------|---------|
-| `pizza_analysis.py` | Core statistical analysis with hypothesis tests |
-| `generate_summary.py` | Descriptive visualization generation (fig1-6) |
-| `competitive_model.py` | Weighted scoring and competitive ranking model |
-| `regression_analysis.py` | Predictive regression models |
-| `generate_competitive_visuals.py` | Competitive model visualizations (fig7-12) |
-| `ensemble_model.py` | **NEW**: Ensemble ML model (RF, GB, LR, DT) |
-| `generate_ml_visuals.py` | **NEW**: ML visualizations (fig13-17) |
+| `scripts/pizza_analysis.py` | Core statistical analysis with hypothesis tests |
+| `scripts/generate_summary.py` | Descriptive visualization generation (fig1-6) |
+| `scripts/competitive_model.py` | Weighted scoring and competitive ranking model |
+| `scripts/regression_analysis.py` | Predictive regression models |
+| `scripts/generate_competitive_visuals.py` | Competitive model visualizations (fig7-12) |
+| `scripts/ensemble_model.py` | Behavioral ML model (circular features excluded) |
+| `scripts/generate_ml_visuals.py` | ML visualizations (fig13-17) |
 | `outputs/summary_statistics.csv` | Key metrics in machine-readable format |
 | `outputs/restaurant_rankings.csv` | Full restaurant preference data |
-| `outputs/feature_importance_consensus.csv` | **NEW**: ML feature importance |
+| `outputs/feature_importance_consensus.csv` | ML feature importance |
 | `outputs/fig1-6*.png` | Descriptive analysis visualizations |
 | `outputs/fig7-12*.png` | Competitive model visualizations |
-| `outputs/fig13-17*.png` | **NEW**: Machine learning visualizations |
+| `outputs/fig13-17*.png` | Machine learning visualizations |
 
 ---
 

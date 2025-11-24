@@ -1,6 +1,8 @@
 # Executive Summary: RIT Pizza Survey
 
-**What is the Best Pizza Available to RIT Students?**
+**Purpose**: Quick-reference summary of key findings with visualizations for stakeholder presentations.
+
+**Research Question**: What is the Best Pizza Available to RIT Students?
 
 *BANA255 Survey Analysis | November 2025 | n=161 respondents*
 
@@ -24,7 +26,7 @@
 
 **84% say they prefer local pizza places, yet Domino's (a chain) wins.**
 
-![Local vs Chain Preference](outputs/fig1_local_vs_chain.png)
+![Local vs Chain Preference](../outputs/fig1_local_vs_chain.png)
 
 | Preference | % of Respondents |
 |------------|------------------|
@@ -40,7 +42,7 @@
 
 **Chain restaurants dominate the top 5 despite stated local preference.**
 
-![Top Pizza Places](outputs/fig2_top_pizza_places.png)
+![Top Pizza Places](../outputs/fig2_top_pizza_places.png)
 
 | Rank | Restaurant | Votes | Type |
 |------|------------|-------|------|
@@ -58,7 +60,7 @@
 
 **Taste dominates—94% rate it as highly important.**
 
-![Importance Ratings](outputs/fig3_importance_ratings.png)
+![Importance Ratings](../outputs/fig3_importance_ratings.png)
 
 | Rank | Characteristic | Mean (1-5) | % High Importance |
 |------|----------------|------------|-------------------|
@@ -78,7 +80,7 @@
 
 **71% prefer pickup. Students will wait extra for quality.**
 
-![Order & Time Preferences](outputs/fig4_order_time_preferences.png)
+![Order & Time Preferences](../outputs/fig4_order_time_preferences.png)
 
 | Method | % |
 |--------|---|
@@ -100,7 +102,7 @@
 
 **Taste > Price > Convenience > Variety**
 
-![Decision Factors](outputs/fig5_decision_factors.png)
+![Decision Factors](../outputs/fig5_decision_factors.png)
 
 | Factor | Mean Score | Statistical Comparison |
 |--------|------------|------------------------|
@@ -115,7 +117,7 @@
 
 ## Demographics
 
-![Demographics](outputs/fig6_demographics.png)
+![Demographics](../outputs/fig6_demographics.png)
 
 | Demographic | Breakdown |
 |-------------|-----------|
