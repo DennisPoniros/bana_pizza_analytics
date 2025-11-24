@@ -12,7 +12,8 @@
 | Document | Purpose |
 |----------|---------|
 | [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md) | Visual summary with charts and key takeaways |
-| [COMPETITIVE_ANALYSIS.md](COMPETITIVE_ANALYSIS.md) | **NEW**: Full competitive model and go-to-market strategy |
+| [COMPETITIVE_ANALYSIS.md](COMPETITIVE_ANALYSIS.md) | Full competitive model and go-to-market strategy |
+| [ML_MODEL_REPORT.md](ML_MODEL_REPORT.md) | **NEW**: Ensemble learning model and predictions |
 | [METHODOLOGY.md](METHODOLOGY.md) | Statistical methods, assumptions, and references |
 | `outputs/` | Generated figures and CSV tables |
 
@@ -33,6 +34,13 @@
 - `fig10_dominos_opportunity.png` - Primary competitor analysis
 - `fig11_positioning_map.png` - Strategic positioning map
 - `fig12_local_predictors.png` - Regression predictors
+
+**Machine Learning Model (fig13-17)**:
+- `fig13_feature_importance.png` - Consensus feature ranking
+- `fig14_model_performance.png` - Model comparison
+- `fig15_decision_rules.png` - Decision tree rules
+- `fig16_customer_profiles.png` - Local vs Chain profiles
+- `fig17_category_importance.png` - Feature category analysis
 
 ---
 
@@ -301,6 +309,7 @@ This survey explores pizza preferences among RIT students to determine what make
 | 2025-11-24 | 1.0 | Initial analysis of 5 research questions |
 | 2025-11-24 | 1.1 | Added visualizations, executive summary, cross-linked documentation |
 | 2025-11-24 | 2.0 | **Competitive Model**: Weighted scoring, segmentation, regression, threat ranking |
+| 2025-11-24 | 3.0 | **ML Model**: Ensemble learning (RF, GB, LR) for prediction and explanation |
 
 ---
 
@@ -313,11 +322,15 @@ This survey explores pizza preferences among RIT students to determine what make
 | `competitive_model.py` | Weighted scoring and competitive ranking model |
 | `regression_analysis.py` | Predictive regression models |
 | `generate_competitive_visuals.py` | Competitive model visualizations (fig7-12) |
+| `ensemble_model.py` | **NEW**: Ensemble ML model (RF, GB, LR, DT) |
+| `generate_ml_visuals.py` | **NEW**: ML visualizations (fig13-17) |
 | `outputs/summary_statistics.csv` | Key metrics in machine-readable format |
 | `outputs/restaurant_rankings.csv` | Full restaurant preference data |
+| `outputs/feature_importance_consensus.csv` | **NEW**: ML feature importance |
 | `outputs/fig1-6*.png` | Descriptive analysis visualizations |
 | `outputs/fig7-12*.png` | Competitive model visualizations |
+| `outputs/fig13-17*.png` | **NEW**: Machine learning visualizations |
 
 ---
 
-*Analysis conducted using Python (pandas, scipy, matplotlib, seaborn).*
+*Analysis conducted using Python (pandas, scipy, scikit-learn, matplotlib, seaborn).*
