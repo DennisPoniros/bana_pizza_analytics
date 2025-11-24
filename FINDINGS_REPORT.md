@@ -12,16 +12,27 @@
 | Document | Purpose |
 |----------|---------|
 | [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md) | Visual summary with charts and key takeaways |
+| [COMPETITIVE_ANALYSIS.md](COMPETITIVE_ANALYSIS.md) | **NEW**: Full competitive model and go-to-market strategy |
 | [METHODOLOGY.md](METHODOLOGY.md) | Statistical methods, assumptions, and references |
 | `outputs/` | Generated figures and CSV tables |
 
 ### Generated Visualizations
+
+**Descriptive Analysis (fig1-6)**:
 - `fig1_local_vs_chain.png` - Preference distribution
 - `fig2_top_pizza_places.png` - Restaurant rankings
 - `fig3_importance_ratings.png` - Quality characteristic importance
 - `fig4_order_time_preferences.png` - Order method & time analysis
 - `fig5_decision_factors.png` - Key decision factors
 - `fig6_demographics.png` - Sample demographics
+
+**Competitive Model (fig7-12)**:
+- `fig7_importance_weights.png` - Weighted scoring model
+- `fig8_competitive_ranking.png` - Threat score rankings
+- `fig9_local_chain_paradox.png` - Stated vs actual behavior
+- `fig10_dominos_opportunity.png` - Primary competitor analysis
+- `fig11_positioning_map.png` - Strategic positioning map
+- `fig12_local_predictors.png` - Regression predictors
 
 ---
 
@@ -289,6 +300,7 @@ This survey explores pizza preferences among RIT students to determine what make
 |------|---------|---------|
 | 2025-11-24 | 1.0 | Initial analysis of 5 research questions |
 | 2025-11-24 | 1.1 | Added visualizations, executive summary, cross-linked documentation |
+| 2025-11-24 | 2.0 | **Competitive Model**: Weighted scoring, segmentation, regression, threat ranking |
 
 ---
 
@@ -297,10 +309,14 @@ This survey explores pizza preferences among RIT students to determine what make
 | File | Purpose |
 |------|---------|
 | `pizza_analysis.py` | Core statistical analysis with hypothesis tests |
-| `generate_summary.py` | Visualization and summary table generation |
+| `generate_summary.py` | Descriptive visualization generation (fig1-6) |
+| `competitive_model.py` | Weighted scoring and competitive ranking model |
+| `regression_analysis.py` | Predictive regression models |
+| `generate_competitive_visuals.py` | Competitive model visualizations (fig7-12) |
 | `outputs/summary_statistics.csv` | Key metrics in machine-readable format |
 | `outputs/restaurant_rankings.csv` | Full restaurant preference data |
-| `outputs/fig*.png` | Publication-ready visualizations |
+| `outputs/fig1-6*.png` | Descriptive analysis visualizations |
+| `outputs/fig7-12*.png` | Competitive model visualizations |
 
 ---
 
