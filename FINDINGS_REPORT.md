@@ -7,6 +7,24 @@
 
 ---
 
+## Quick Links
+
+| Document | Purpose |
+|----------|---------|
+| [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md) | Visual summary with charts and key takeaways |
+| [METHODOLOGY.md](METHODOLOGY.md) | Statistical methods, assumptions, and references |
+| `outputs/` | Generated figures and CSV tables |
+
+### Generated Visualizations
+- `fig1_local_vs_chain.png` - Preference distribution
+- `fig2_top_pizza_places.png` - Restaurant rankings
+- `fig3_importance_ratings.png` - Quality characteristic importance
+- `fig4_order_time_preferences.png` - Order method & time analysis
+- `fig5_decision_factors.png` - Key decision factors
+- `fig6_demographics.png` - Sample demographics
+
+---
+
 ## Table of Contents
 1. [Executive Summary](#executive-summary)
 2. [Key Findings](#key-findings)
@@ -19,6 +37,8 @@
 ## Executive Summary
 
 This survey explores pizza preferences among RIT students to determine what makes a pizza place "the best." Analysis of 161 responses reveals that **taste is the dominant factor** in pizza selection, students **prefer local establishments** but paradoxically choose chains for convenience, and **pickup is strongly favored** over delivery.
+
+> **Visual Summary**: See [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md) for charts and figures.
 
 ### Top-Line Insights
 | Finding | Key Metric | Confidence |
@@ -268,7 +288,20 @@ This survey explores pizza preferences among RIT students to determine what make
 | Date | Version | Changes |
 |------|---------|---------|
 | 2025-11-24 | 1.0 | Initial analysis of 5 research questions |
+| 2025-11-24 | 1.1 | Added visualizations, executive summary, cross-linked documentation |
 
 ---
 
-*Analysis conducted using Python (pandas, scipy). Full code available in `pizza_analysis.py`.*
+## Scripts & Outputs
+
+| File | Purpose |
+|------|---------|
+| `pizza_analysis.py` | Core statistical analysis with hypothesis tests |
+| `generate_summary.py` | Visualization and summary table generation |
+| `outputs/summary_statistics.csv` | Key metrics in machine-readable format |
+| `outputs/restaurant_rankings.csv` | Full restaurant preference data |
+| `outputs/fig*.png` | Publication-ready visualizations |
+
+---
+
+*Analysis conducted using Python (pandas, scipy, matplotlib, seaborn).*
