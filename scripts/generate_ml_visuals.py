@@ -20,20 +20,20 @@ print("Generating ML visualizations...")
 # Load consensus data
 try:
     consensus = pd.read_csv(OUTPUT_DIR / 'feature_importance_consensus.csv', index_col=0)
-except:
-    # Recreate from model output
+except FileNotFoundError:
+    # Fallback data based on behavioral features only (circular features excluded)
+    # NOTE: These values are from model runs with states_prefer_local EXCLUDED
     consensus = pd.DataFrame({
-        'feature': ['states_prefer_local', 'expected_pickup_time', 'prefers_pickup',
-                   'max_price', 'price_flexibility', 'expected_price', 'orders_online',
-                   'willing_drive_pickup', 'age', 'orders_per_month'],
-        'mean': [0.778, 0.625, 0.576, 0.522, 0.512, 0.436, 0.423, 0.418, 0.405, 0.405]
+        'feature': ['expected_pickup_time', 'prefers_pickup', 'max_price',
+                   'price_flexibility', 'expected_price', 'orders_online',
+                   'willing_drive_pickup', 'age', 'orders_per_month', 'imp_crust'],
+        'mean': [0.717, 0.630, 0.548, 0.505, 0.498, 0.423, 0.418, 0.405, 0.405, 0.380]
     }).set_index('feature')
 
 fig, ax = plt.subplots(figsize=(10, 8))
 
-# Clean feature names
+# Clean feature names (behavioral features only - circular features excluded)
 feature_names = {
-    'states_prefer_local': 'States "Prefer Local"',
     'expected_pickup_time': 'Expected Pickup Time',
     'prefers_pickup': 'Prefers Pickup',
     'max_price': 'Max Price Willing to Pay',
@@ -41,13 +41,22 @@ feature_names = {
     'expected_price': 'Expected Price',
     'orders_online': 'Orders Online',
     'willing_drive_pickup': 'Willing to Drive (Pickup)',
+    'willing_wait_delivery': 'Willing to Wait (Delivery)',
     'age': 'Age',
     'orders_per_month': 'Orders per Month',
     'imp_foldability': 'Foldability Importance',
     'imp_crust': 'Crust Importance',
+    'imp_taste': 'Taste Importance',
+    'imp_price': 'Price Importance',
+    'imp_convenience': 'Convenience Importance',
     'expected_delivery_time': 'Expected Delivery Time',
     'price_over_location': 'Price Over Location',
-    'imp_price': 'Price Importance'
+    'prefers_delivery': 'Prefers Delivery',
+    'has_transport': 'Has Transportation',
+    'on_campus': 'Lives On Campus',
+    'year_numeric': 'Year in School',
+    'deal_sensitivity': 'Deal Sensitivity',
+    'imp_topping_variety': 'Topping Variety Importance'
 }
 
 top_features = consensus.head(15).copy()
@@ -128,7 +137,8 @@ print("✓ Generated: fig14_model_performance.png")
 fig, ax = plt.subplots(figsize=(12, 8))
 
 # Create a visual decision tree representation
-ax.set_xlim(0, 10)
+# NOTE: Uses BEHAVIORAL features only (circular features excluded)
+ax.set_xlim(0, 12)
 ax.set_ylim(0, 10)
 ax.axis('off')
 
@@ -147,44 +157,48 @@ def draw_arrow(x1, y1, x2, y2, text=''):
     if text:
         ax.text(mid_x, mid_y + 0.2, text, fontsize=8, ha='center')
 
-# Root node
-draw_box(5, 9, 'States "Prefer Local"?', '#f0f0f0', width=3)
+# Root node - BEHAVIORAL FEATURE (not circular)
+draw_box(6, 9, 'Prefers Pickup?', '#f0f0f0', width=2.8)
 
 # Level 1
-draw_arrow(5, 8.6, 2.5, 7.8, 'No')
-draw_arrow(5, 8.6, 7.5, 7.8, 'Yes')
+draw_arrow(6, 8.6, 3, 7.8, 'No')
+draw_arrow(6, 8.6, 9, 7.8, 'Yes')
 
-draw_box(2.5, 7.4, '→ CHAIN\n(69% of "No")', '#e74c3c', width=2.2)
-draw_box(7.5, 7.4, 'Prefers Pickup?', '#f0f0f0', width=2.5)
+draw_box(3, 7.4, '→ CHAIN\n(71%)', '#e74c3c', width=2.2)
+draw_box(9, 7.4, 'Max Price > $24?', '#f0f0f0', width=2.8)
 
 # Level 2 - right branch
-draw_arrow(7.5, 7, 6, 6.2, 'No')
-draw_arrow(7.5, 7, 9, 6.2, 'Yes')
+draw_arrow(9, 7, 7, 6.2, 'No')
+draw_arrow(9, 7, 11, 6.2, 'Yes')
 
-draw_box(6, 5.8, '→ CHAIN\n(69%)', '#e74c3c', width=1.8)
-draw_box(9, 5.8, 'Orders Online?', '#f0f0f0', width=2.2)
+draw_box(7, 5.8, 'Orders > 2x/mo?', '#f0f0f0', width=2.4)
+draw_box(11, 5.8, '→ LOCAL\n(68%)', '#2ecc71', width=1.8)
 
-# Level 3
-draw_arrow(9, 5.4, 8, 4.6, 'No')
-draw_arrow(9, 5.4, 10, 4.6, 'Yes')
+# Level 3 - left sub-branch
+draw_arrow(7, 5.4, 5.5, 4.6, 'No')
+draw_arrow(7, 5.4, 8.5, 4.6, 'Yes')
 
-draw_box(8, 4.2, '→ LOCAL\n(83%)', '#2ecc71', width=1.8)
-draw_box(10, 4.2, 'Exp. Delivery\n≤35 min?', '#f0f0f0', width=1.8, height=1)
+draw_box(5.5, 4.2, 'Price Flex < 3?', '#f0f0f0', width=2.2)
+draw_box(8.5, 4.2, '→ LOCAL\n(75%)', '#2ecc71', width=1.8)
 
 # Level 4
-draw_arrow(10, 3.7, 9.3, 2.8, 'Yes')
-draw_arrow(10, 3.7, 10.7, 2.8, 'No')
+draw_arrow(5.5, 3.8, 4.3, 2.8, 'Yes')
+draw_arrow(5.5, 3.8, 6.7, 2.8, 'No')
 
-draw_box(9.3, 2.4, '→ LOCAL\n(75%)', '#2ecc71', width=1.6)
-draw_box(10.7, 2.4, '→ CHAIN\n(65%)', '#e74c3c', width=1.6)
+draw_box(4.3, 2.4, '→ CHAIN\n(65%)', '#e74c3c', width=1.6)
+draw_box(6.7, 2.4, '→ LOCAL\n(58%)', '#2ecc71', width=1.6)
 
-ax.set_title('Decision Tree Rules: Who Chooses Local vs Chain?\n(Simplified from max_depth=4 tree)',
+ax.set_title('Decision Tree Rules: Who Chooses Local vs Chain?\n(Behavioral features only - circular features excluded)',
              fontsize=12, fontweight='bold', pad=20)
 
 # Add legend
 local_patch = mpatches.Patch(color='#2ecc71', label='Predicts LOCAL')
 chain_patch = mpatches.Patch(color='#e74c3c', label='Predicts CHAIN')
 ax.legend(handles=[local_patch, chain_patch], loc='lower left')
+
+# Add note about methodology
+ax.text(0.5, 0.5, 'Note: Tree uses behavioral features only.\n"Stated preference" excluded to avoid circular logic.',
+        fontsize=8, style='italic', alpha=0.7)
 
 plt.tight_layout()
 plt.savefig(OUTPUT_DIR / 'fig15_decision_rules.png', dpi=150, bbox_inches='tight')
@@ -247,15 +261,16 @@ print("✓ Generated: fig16_customer_profiles.png")
 # =============================================================================
 fig, ax = plt.subplots(figsize=(10, 6))
 
-categories = ['Stated\nPreference', 'Pickup\nBehavior', 'Price\nFactors',
-              'Time\nExpectations', 'Demographics', 'Quality\nImportance']
-importance = [0.778, 0.576, 0.490, 0.457, 0.405, 0.380]
+# Categories based on BEHAVIORAL features only (circular features excluded)
+categories = ['Pickup\nBehavior', 'Price\nFactors', 'Time\nExpectations',
+              'Demographics', 'Quality\nImportance', 'Order\nBehavior']
+importance = [0.630, 0.517, 0.457, 0.405, 0.380, 0.414]
 
 colors = plt.cm.viridis(np.linspace(0.2, 0.8, len(categories)))
 
 bars = ax.bar(categories, importance, color=colors)
 ax.set_ylabel('Mean Consensus Importance')
-ax.set_title('Feature Category Importance\n(What matters most in predicting pizza preference?)',
+ax.set_title('Feature Category Importance (Behavioral Features Only)\n(Circular features excluded to avoid tautological predictions)',
              fontsize=12, fontweight='bold')
 ax.set_ylim(0, 1)
 
