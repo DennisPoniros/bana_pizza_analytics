@@ -2,7 +2,7 @@
 
 **Study**: BANA255 Pizza Survey Analysis
 **Document Purpose**: Detailed explanation and justification of statistical methods
-**Last Updated**: November 24, 2025
+**Last Updated**: November 25, 2025
 
 ---
 
@@ -10,9 +10,10 @@
 1. [Overview](#overview)
 2. [Data Preparation](#data-preparation)
 3. [Statistical Tests by Research Question](#statistical-tests-by-research-question)
-4. [Assumptions & Diagnostics](#assumptions--diagnostics)
-5. [Effect Sizes & Practical Significance](#effect-sizes--practical-significance)
-6. [References](#references)
+4. [Advanced Statistical Methods](#advanced-statistical-methods)
+5. [Assumptions & Diagnostics](#assumptions--diagnostics)
+6. [Effect Sizes & Practical Significance](#effect-sizes--practical-significance)
+7. [References](#references)
 
 ---
 
@@ -286,6 +287,184 @@ d = mean difference / SD of differences
 - All results remain significant even with correction
 
 > Reference: Wilcoxon, F. (1945). Individual comparisons by ranking methods. *Biometrics Bulletin*, 1(6), 80-83.
+
+---
+
+## Advanced Statistical Methods
+
+The following advanced methods were added in v6.0 to strengthen analytical rigor.
+
+### Principal Component Analysis (PCA)
+
+**Purpose**: Reduce dimensionality of 9 importance variables to identify latent factors.
+
+**Method**:
+- Standardization: Z-score normalization
+- Extraction: Eigenvalue decomposition
+- Retention criteria: Kaiser criterion (eigenvalue > 1) and 80% variance rule
+
+**Results**:
+- 4 components retained (Kaiser criterion)
+- 64.8% cumulative variance explained
+- PC1: "Quality Consciousness" (Appearance, Balance, Convenience)
+- PC2: "Value/Practicality" (Price, Convenience, Crust)
+
+> Reference: Jolliffe, I. T. (2002). *Principal Component Analysis* (2nd ed.). Springer.
+
+---
+
+### Cluster Validation (K-Means + Silhouette)
+
+**Purpose**: Validate customer segmentation statistically.
+
+**Method**:
+- Algorithm: K-Means clustering
+- Validation: Silhouette analysis + Elbow method
+- k tested: 2-7 clusters
+
+**Results**:
+- Optimal k = 2 (by silhouette score)
+- Maximum silhouette: 0.132 (weak structure)
+- Interpretation: Customer segments are not sharply defined
+
+> Reference: Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. *Journal of Computational and Applied Mathematics*, 20, 53-65.
+
+---
+
+### Cronbach's Alpha (Scale Reliability)
+
+**Purpose**: Assess internal consistency of the 9-item importance scale.
+
+**Formula**:
+```
+α = (k / (k-1)) × (1 - Σσ²ᵢ / σ²ₜₒₜₐₗ)
+```
+
+**Results**:
+- Full scale (9 items): α = 0.581 (Poor)
+- Quality subscale (5 items): α = 0.505
+- Practical subscale (4 items): α = 0.557
+
+**Interpretation**: Low alpha indicates items measure distinct constructs, not a unidimensional scale. This is appropriate—taste, price, and convenience are conceptually different.
+
+> Reference: George, D., & Mallery, P. (2003). *SPSS for Windows Step by Step: A Simple Guide and Reference*. Allyn & Bacon.
+
+---
+
+### Chi-Square Tests of Independence
+
+**Purpose**: Test associations between categorical variables.
+
+**Method**:
+- Test: Pearson's chi-square
+- Effect size: Cramér's V
+
+**Key Results**:
+| Association | χ² | p-value | Cramér's V |
+|-------------|-----|---------|------------|
+| Stated × Actual Preference | 21.47 | < 0.001 | 0.365 |
+| Has Transport × Local | 11.43 | < 0.001 | 0.269 |
+| Order Method × Local Pref | 20.39 | < 0.001 | 0.253 |
+
+> Reference: Cramér, H. (1946). *Mathematical Methods of Statistics*. Princeton University Press.
+
+---
+
+### Van Westendorp Price Sensitivity
+
+**Purpose**: Determine optimal price point using price sensitivity meter.
+
+**Method**: Modified Van Westendorp using expected price and maximum willingness-to-pay.
+
+**Results**:
+- Point of Marginal Cheapness: $17
+- Optimal Price Point: $20
+- Point of Marginal Expensiveness: $25
+- Price Flexibility: $7.93 (46% premium tolerance)
+
+> Reference: Van Westendorp, P. H. (1976). NSS Price Sensitivity Meter - A New Approach to Study Consumer Perception of Prices. *ESOMAR Congress*.
+
+---
+
+### Spearman Rank Correlations
+
+**Purpose**: Non-parametric correlations for ordinal Likert data.
+
+**Method**: Spearman's rho (rank-based correlation)
+
+**Key Results**:
+| Pair | ρ | p-value |
+|------|---|---------|
+| Price × Convenience | +0.508 | < 0.001 |
+| Crust × Balance | +0.435 | < 0.001 |
+
+> Reference: Spearman, C. (1904). The proof and measurement of association between two things. *American Journal of Psychology*, 15, 72-101.
+
+---
+
+### Mediation Analysis (Baron & Kenny)
+
+**Purpose**: Test if pickup preference mediates the taste → local relationship.
+
+**Method**: Baron & Kenny (1986) four-step approach with bootstrap confidence intervals.
+
+**Paths**:
+- Total effect (c): 0.216
+- X → M (a): -0.195
+- M → Y (b): 1.083
+- Direct effect (c'): 0.261
+
+**Result**: No significant mediation (CI includes zero). Taste has direct effect on local choice.
+
+> Reference: Baron, R. M., & Kenny, D. A. (1986). The moderator-mediator variable distinction in social psychological research. *Journal of Personality and Social Psychology*, 51(6), 1173-1182.
+
+---
+
+### Linear Discriminant Analysis (LDA)
+
+**Purpose**: Identify dimensions that maximally separate local vs chain choosers.
+
+**Method**: Fisher's Linear Discriminant
+
+**Results**:
+- Classification accuracy: 68.8%
+- Wilks' Lambda: 0.874
+- Top discriminators: Crust (+0.471), Expected Price (+0.442), Orders/Month (+0.373)
+
+> Reference: Fisher, R. A. (1936). The use of multiple measurements in taxonomic problems. *Annals of Eugenics*, 7(2), 179-188.
+
+---
+
+### Propensity Score Matching
+
+**Purpose**: Control for selection bias when comparing local vs chain choosers.
+
+**Method**: Logistic regression propensity scores + nearest-neighbor matching.
+
+**Results**:
+- Unadjusted loyalty difference: +0.308 (local higher)
+- PS-matched difference (ATT): -0.054 (no difference)
+- After controlling confounders, loyalty differences disappear
+
+> Reference: Rosenbaum, P. R., & Rubin, D. B. (1983). The central role of the propensity score in observational studies for causal effects. *Biometrika*, 70(1), 41-55.
+
+---
+
+### Simulated Choice Model
+
+**Purpose**: Predict market share for hypothetical new entrant.
+
+**Method**: Logit choice model with importance-weighted scores.
+
+**Results**:
+| Restaurant | Weighted Score | Market Share |
+|------------|----------------|--------------|
+| New Premium Quality | 4.24 | 39.7% |
+| New Quality+Convenience | 4.12 | 31.2% |
+| Joe's Brooklyn | 3.86 | 18.7% |
+| Domino's | 3.57 | 10.5% |
+
+> Reference: McFadden, D. (1974). Conditional logit analysis of qualitative choice behavior. In P. Zarembka (Ed.), *Frontiers in Econometrics*. Academic Press.
 
 ---
 
