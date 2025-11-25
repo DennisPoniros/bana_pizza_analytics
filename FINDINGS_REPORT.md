@@ -3,7 +3,7 @@
 **Study**: What is the Best Pizza Available to RIT Students?
 **Data Collected**: November 9-14, 2025
 **Valid Responses**: 161 (consented participants)
-**Last Updated**: November 24, 2025
+**Last Updated**: November 25, 2025
 
 ---
 
@@ -56,14 +56,29 @@
 - `fig27_price_willingness.png` - Price distribution analysis
 - `fig28_demographics_choice.png` - Demographics by choice type
 
+**Advanced Statistical Analysis (fig29-40)**:
+- `fig29_pca_scree.png` - PCA scree plot and cumulative variance
+- `fig30_pca_biplot.png` - PCA biplot with factor loadings
+- `fig31_cluster_validation.png` - Elbow and silhouette analysis
+- `fig32_silhouette_plot.png` - Detailed silhouette plot for optimal k
+- `fig33_cronbach_alpha.png` - Scale reliability (Cronbach's Alpha)
+- `fig34_spearman_heatmap.png` - Spearman rank correlation matrix
+- `fig35_van_westendorp.png` - Price sensitivity curves (Van Westendorp)
+- `fig36_mediation_diagram.png` - Mediation path diagram (Baron & Kenny)
+- `fig37_discriminant_analysis.png` - LDA coefficients and score distribution
+- `fig38_chi_square_associations.png` - Categorical variable associations
+- `fig39_propensity_scores.png` - Propensity score distribution
+- `fig40_simulated_choice.png` - Market share simulation model
+
 ---
 
 ## Table of Contents
 1. [Executive Summary](#executive-summary)
 2. [Key Findings](#key-findings)
 3. [Detailed Analysis](#detailed-analysis)
-4. [Open Questions & Future Research](#open-questions--future-research)
-5. [Methodology Notes](#methodology-notes)
+4. [Advanced Statistical Analysis](#advanced-statistical-analysis)
+5. [Open Questions & Future Research](#open-questions--future-research)
+6. [Methodology Notes](#methodology-notes)
 
 ---
 
@@ -261,6 +276,211 @@ This survey explores pizza preferences among RIT students to determine what make
 
 ---
 
+## Advanced Statistical Analysis
+
+This section documents additional rigorous statistical methods applied to strengthen the analytical foundation.
+
+### Principal Component Analysis (PCA)
+
+**Purpose**: Reduce the 9 importance dimensions to interpretable latent factors.
+
+| Component | Eigenvalue | Variance Explained | Cumulative |
+|-----------|------------|-------------------|------------|
+| PC1 | 2.114 | 23.3% | 23.3% |
+| PC2 | 1.529 | 16.9% | 40.2% |
+| PC3 | 1.203 | 13.3% | 53.5% |
+| PC4 | 1.022 | 11.3% | 64.8% |
+
+**Findings**:
+- Kaiser criterion (eigenvalue > 1) suggests retaining 4 components
+- PC1: "Overall Quality Consciousness" (Appearance, Balance, Convenience load highest)
+- PC2: "Value/Practicality Factor" (Price, Convenience, Crust load highest)
+- Visualization: `fig29_pca_scree.png`, `fig30_pca_biplot.png`
+
+---
+
+### Cluster Validation
+
+**Purpose**: Statistically validate the customer segmentation.
+
+| k (clusters) | Silhouette Score | Interpretation |
+|--------------|------------------|----------------|
+| 2 | 0.132 | Optimal |
+| 3 | 0.124 | Acceptable |
+| 4 | 0.123 | Acceptable |
+
+**Findings**:
+- Silhouette analysis suggests k=2 is optimal (but weak structure overall)
+- Elbow method suggests k=3-4
+- Low silhouette scores (< 0.25) indicate overlapping customer segments
+- Visualization: `fig31_cluster_validation.png`, `fig32_silhouette_plot.png`
+
+---
+
+### Scale Reliability (Cronbach's Alpha)
+
+**Purpose**: Assess internal consistency of the 9-item importance scale.
+
+| Scale | Cronbach's Alpha | Interpretation |
+|-------|------------------|----------------|
+| Full 9-item scale | 0.581 | Poor |
+| Quality subscale (5 items) | 0.505 | Poor |
+| Practical subscale (4 items) | 0.557 | Poor |
+
+**Findings**:
+- The importance items do NOT form a reliable unidimensional scale
+- This is expected: taste, price, and convenience are conceptually distinct constructs
+- Implication: Treat each importance factor separately rather than averaging
+- Visualization: `fig33_cronbach_alpha.png`
+
+---
+
+### Chi-Square Tests of Independence
+
+**Purpose**: Test associations between categorical variables.
+
+| Association | χ² | p-value | Cramér's V | Significance |
+|-------------|-----|---------|------------|--------------|
+| Stated Preference × Actual Choice | 21.47 | < 0.001 | 0.365 | *** |
+| Order Method × Local Preference | 20.39 | < 0.001 | 0.253 | *** |
+| Has Transport × Chose Local | 11.43 | < 0.001 | 0.269 | *** |
+| Housing × Local Preference | 4.22 | 0.377 | 0.116 | NS |
+| Year × Local Preference | 3.56 | 0.965 | 0.106 | NS |
+
+**Key Findings**:
+- Transportation access strongly predicts local restaurant choice (44.7% of those with transport choose local vs 16.4% without)
+- Stated preference is correlated with but not perfectly predictive of actual choice
+- Visualization: `fig38_chi_square_associations.png`
+
+---
+
+### Van Westendorp Price Sensitivity Analysis
+
+**Purpose**: Determine optimal price point for 16" pizza.
+
+| Metric | Price |
+|--------|-------|
+| Point of Marginal Cheapness | $17 |
+| Optimal Price Point | $20 |
+| Point of Marginal Expensiveness | $25 |
+| Acceptable Range | $14 - $30 |
+| Mean Price Flexibility | $7.93 (46% premium tolerance) |
+
+**Demand Curve Estimates**:
+| Price | % Would Buy | Revenue Index |
+|-------|-------------|---------------|
+| $14 | 94.9% | 13.3 |
+| $16 | 88.5% | 14.2 |
+| $18 | 82.8% | 14.9 |
+| $20 | 77.7% | 15.5 (Maximum) |
+| $22 | 67.5% | 14.9 |
+| $24 | 57.3% | 13.8 |
+
+**Strategic Implication**: $20 maximizes revenue; acceptable premium pricing up to $25.
+- Visualization: `fig35_van_westendorp.png`
+
+---
+
+### Spearman Rank Correlations
+
+**Purpose**: Non-parametric correlations appropriate for ordinal Likert data.
+
+**Strong Correlations (ρ > 0.4)**:
+| Pair | Spearman ρ | p-value |
+|------|------------|---------|
+| Price × Convenience | +0.508 | < 0.001 |
+| Crust × Balance | +0.435 | < 0.001 |
+
+**Interpretation**: Students who value price also value convenience (value-seekers cluster together). Crust and balance importance are related (quality-seekers cluster together).
+- Visualization: `fig34_spearman_heatmap.png`
+
+---
+
+### Formal Mediation Analysis (Baron & Kenny)
+
+**Hypothesis**: Pickup preference mediates the relationship between taste importance and local choice.
+
+| Path | Coefficient | Interpretation |
+|------|-------------|----------------|
+| c (total effect) | 0.216 | Taste → Local |
+| a (X → M) | -0.195 | Taste → Pickup |
+| b (M → Y) | 1.083 | Pickup → Local |
+| c' (direct effect) | 0.261 | Taste → Local (controlling for pickup) |
+
+**Result**: NO significant mediation. The indirect effect CI includes zero.
+- Taste has a direct effect on local choice, not mediated through pickup preference
+- Visualization: `fig36_mediation_diagram.png`
+
+---
+
+### Linear Discriminant Analysis (LDA)
+
+**Purpose**: Identify dimensions that maximally separate local vs chain choosers.
+
+| Variable | LDA Coefficient | Direction |
+|----------|-----------------|-----------|
+| Crust | +0.471 | → Local |
+| Expected Price | +0.442 | → Local |
+| Orders/Month | +0.373 | → Local |
+| Ingredients | +0.196 | → Local |
+| Taste | +0.148 | → Local |
+| Price | -0.100 | → Chain |
+
+**Classification Accuracy**: 68.8%
+**Wilks' Lambda**: 0.874 (moderate discrimination)
+
+**Interpretation**: Higher crust importance and willingness to pay more strongly predict local choice.
+- Visualization: `fig37_discriminant_analysis.png`
+
+---
+
+### Propensity Score Analysis
+
+**Purpose**: Control for selection bias when comparing local vs chain choosers.
+
+| Estimate | Loyalty Difference | Interpretation |
+|----------|-------------------|----------------|
+| Unadjusted | +0.308 | Local choosers more loyal |
+| PS-Matched (ATT) | -0.054 | No difference after matching |
+
+**Result**: After controlling for confounders (taste, price, convenience importance, order frequency, expected price), there is NO significant difference in loyalty between local and chain choosers.
+- Visualization: `fig39_propensity_scores.png`
+
+---
+
+### Simulated Choice Model
+
+**Purpose**: Predict market share for hypothetical new entrant.
+
+**Importance Weights (Normalized)**:
+| Factor | Weight |
+|--------|--------|
+| Taste | 14.1% |
+| Balance | 12.6% |
+| Crust | 12.2% |
+| Freshness | 12.1% |
+| Price | 12.0% |
+
+**Simulated Market Shares (Logit Model)**:
+| Restaurant | Weighted Score | Market Share |
+|------------|----------------|--------------|
+| NEW: Scenario B (Premium Quality) | 4.24 | 39.7% |
+| NEW: Scenario A (Quality + Convenience) | 4.12 | 31.2% |
+| Joe's Brooklyn | 3.86 | 18.7% |
+| Domino's | 3.57 | 10.5% |
+
+**What-If Analysis** (Scenario A, +0.5 improvement):
+| Factor | Score Gain | Priority |
+|--------|------------|----------|
+| Taste | +0.070 | HIGH |
+| Balance | +0.063 | HIGH |
+| Crust | +0.061 | HIGH |
+
+**Strategic Implication**: A new entrant matching local quality with chain convenience could capture 30%+ market share.
+- Visualization: `fig40_simulated_choice.png`
+
+---
+
 ## Open Questions & Future Research
 
 ### Priority 1: Explain the Local-Chain Paradox
@@ -327,6 +547,7 @@ This survey explores pizza preferences among RIT students to determine what make
 | 2025-11-24 | 3.1 | **Fix**: Removed circular feature (states_prefer_local) from ML model; reorganized repo structure |
 | 2025-11-24 | 4.0 | **Strategic Analysis**: Winner declaration, unmet needs, model confidence, variable justification, causal analysis |
 | 2025-11-25 | 5.0 | **Advanced Visuals**: 11 new presentation-quality seaborn visualizations (fig18-28) |
+| 2025-11-25 | 6.0 | **Advanced Statistics**: PCA, cluster validation, Cronbach's alpha, chi-square independence, Van Westendorp pricing, Spearman correlations, mediation analysis, LDA, Kruskal-Wallis, propensity scores, simulated choice model (fig29-40) |
 
 ---
 
@@ -341,8 +562,10 @@ This survey explores pizza preferences among RIT students to determine what make
 | `scripts/generate_competitive_visuals.py` | Competitive model visualizations (fig7-12) |
 | `scripts/ensemble_model.py` | Behavioral ML model (circular features excluded) |
 | `scripts/generate_ml_visuals.py` | ML visualizations (fig13-17) |
-| `scripts/strategic_analysis.py` | **Winner declaration, unmet needs, confidence, causality** |
-| `scripts/generate_advanced_visuals.py` | **Advanced seaborn visualizations (fig18-28)** |
+| `scripts/strategic_analysis.py` | Winner declaration, unmet needs, confidence, causality |
+| `scripts/generate_advanced_visuals.py` | Advanced seaborn visualizations (fig18-28) |
+| `scripts/advanced_statistics.py` | **PCA, clustering, reliability, mediation, LDA, propensity scores, choice modeling** |
+| `scripts/generate_advanced_stats_visuals.py` | **Advanced statistical visualizations (fig29-40)** |
 | `outputs/summary_statistics.csv` | Key metrics in machine-readable format |
 | `outputs/restaurant_rankings.csv` | Full restaurant preference data |
 | `outputs/feature_importance_consensus.csv` | ML feature importance |
@@ -350,6 +573,7 @@ This survey explores pizza preferences among RIT students to determine what make
 | `outputs/fig7-12*.png` | Competitive model visualizations |
 | `outputs/fig13-17*.png` | Machine learning visualizations |
 | `outputs/fig18-28*.png` | Advanced presentation visualizations |
+| `outputs/fig29-40*.png` | **Advanced statistical analysis visualizations** |
 
 ---
 
