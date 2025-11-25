@@ -54,7 +54,7 @@ Without relying on stated preferences, we can still predict pizza choice with **
 
 ### Feature Engineering (Behavioral Features Only)
 
-We engineered **27 behavioral features** across 6 categories:
+We engineered **28 behavioral features** across 6 categories:
 
 | Category | Features | Rationale |
 |----------|----------|-----------|

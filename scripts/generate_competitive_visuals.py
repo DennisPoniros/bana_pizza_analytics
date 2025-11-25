@@ -90,14 +90,25 @@ for rest in restaurants:
     n = len(rest_data)
     share = n / len(data) * 100
 
-    # Loyalty
+    # Loyalty score (normalize 1-5 to 0-100)
     loyalty = rest_data['loyalty_score'].mean()
     loyalty_score = ((loyalty - 1) / 4) * 100 if not np.isnan(loyalty) else 50
 
-    # Share score
+    # Share score (normalize to 0-100)
     share_score = (share / max_share) * 100
 
-    # Local capture
+    # Profile match score - how well customers' values match ideal pizza profile
+    # Calculate difference from population means
+    profile_diffs = []
+    for col, label in zip(q5_cols, labels):
+        customer_imp = rest_data[f'{col}_score'].mean()
+        pop_imp = data[f'{col}_score'].mean()
+        if not np.isnan(customer_imp):
+            profile_diffs.append(abs(customer_imp - pop_imp))
+    avg_diff = np.mean(profile_diffs) if profile_diffs else 0
+    profile_score = max(0, 100 - (avg_diff * 25))  # Convert diff to score
+
+    # Local capture - % of customers who prefer local
     lp = rest_data[rest_data['Q17'].isin(['Local', 'Chain'])]['Q17']
     local_capture = (lp == 'Local').sum() / len(lp) * 100 if len(lp) > 0 else 50
 
@@ -105,7 +116,11 @@ for rest in restaurants:
     is_chain = rest in ["Domino's Pizza", "Papa John's", "Little Caesars",
                         "Pizza Hut", "Costco Pizza", "Blaze Pizza"]
 
-    composite = share_score * 0.35 + loyalty_score * 0.25 + local_capture * 0.25 + 15  # base
+    # Composite score - ALIGNED with competitive_model.py weights
+    composite = (share_score * 0.30 +
+                 loyalty_score * 0.25 +
+                 profile_score * 0.25 +
+                 local_capture * 0.20)
 
     threat_scores.append({
         'Restaurant': rest,
