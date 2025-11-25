@@ -43,6 +43,19 @@
 - `fig16_customer_profiles.png` - Local vs Chain profiles
 - `fig17_category_importance.png` - Feature category analysis
 
+**Advanced Presentation Visuals (fig18-28)**:
+- `fig18_correlation_heatmap.png` - Quality factor correlations
+- `fig19_local_chain_violin.png` - Factor comparison by choice type
+- `fig20_paradox_flow.png` - Stated vs actual behavior flow
+- `fig21_price_taste_scatter.png` - Price vs taste trade-off
+- `fig22_frequency_loyalty_joint.png` - Order frequency vs loyalty
+- `fig23_persuadable_profile.png` - Persuadable segment deep dive
+- `fig24_time_expectations.png` - Expected vs willing time investment
+- `fig25_dominos_vulnerability.png` - Competitor vulnerability analysis
+- `fig26_radar_comparison.png` - Factor priorities radar chart
+- `fig27_price_willingness.png` - Price distribution analysis
+- `fig28_demographics_choice.png` - Demographics by choice type
+
 ---
 
 ## Table of Contents
@@ -313,6 +326,7 @@ This survey explores pizza preferences among RIT students to determine what make
 | 2025-11-24 | 3.0 | **ML Model**: Ensemble learning (RF, GB, LR) for prediction and explanation |
 | 2025-11-24 | 3.1 | **Fix**: Removed circular feature (states_prefer_local) from ML model; reorganized repo structure |
 | 2025-11-24 | 4.0 | **Strategic Analysis**: Winner declaration, unmet needs, model confidence, variable justification, causal analysis |
+| 2025-11-25 | 5.0 | **Advanced Visuals**: 11 new presentation-quality seaborn visualizations (fig18-28) |
 
 ---
 
@@ -328,12 +342,14 @@ This survey explores pizza preferences among RIT students to determine what make
 | `scripts/ensemble_model.py` | Behavioral ML model (circular features excluded) |
 | `scripts/generate_ml_visuals.py` | ML visualizations (fig13-17) |
 | `scripts/strategic_analysis.py` | **Winner declaration, unmet needs, confidence, causality** |
+| `scripts/generate_advanced_visuals.py` | **Advanced seaborn visualizations (fig18-28)** |
 | `outputs/summary_statistics.csv` | Key metrics in machine-readable format |
 | `outputs/restaurant_rankings.csv` | Full restaurant preference data |
 | `outputs/feature_importance_consensus.csv` | ML feature importance |
 | `outputs/fig1-6*.png` | Descriptive analysis visualizations |
 | `outputs/fig7-12*.png` | Competitive model visualizations |
 | `outputs/fig13-17*.png` | Machine learning visualizations |
+| `outputs/fig18-28*.png` | Advanced presentation visualizations |
 
 ---
 
