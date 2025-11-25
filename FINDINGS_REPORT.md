@@ -74,11 +74,12 @@
 
 ## Table of Contents
 1. [Executive Summary](#executive-summary)
-2. [Key Findings](#key-findings)
-3. [Detailed Analysis](#detailed-analysis)
-4. [Advanced Statistical Analysis](#advanced-statistical-analysis)
-5. [Open Questions & Future Research](#open-questions--future-research)
-6. [Methodology Notes](#methodology-notes)
+2. [What It All Means: Plain-Language Interpretation](#what-it-all-means-plain-language-interpretation)
+3. [Key Findings](#key-findings)
+4. [Detailed Analysis](#detailed-analysis)
+5. [Advanced Statistical Analysis](#advanced-statistical-analysis)
+6. [Open Questions & Future Research](#open-questions--future-research)
+7. [Methodology Notes](#methodology-notes)
 
 ---
 
@@ -96,6 +97,150 @@ This survey explores pizza preferences among RIT students to determine what make
 | Pickup preferred | 71% choose pickup over delivery | Descriptive |
 | Price matters | 67% say price > location | Descriptive |
 | Average orders | 2.5 pizzas/month | - |
+
+---
+
+## What It All Means: Plain-Language Interpretation
+
+This section synthesizes all 40+ statistical tests and visualizations into direct, actionable answers. Skip this section if you want technical details; read this first if you want the bottom line.
+
+### The Core Question Answered
+
+**"What is the best pizza available to RIT students?"**
+
+**Answer**: There is no single "best" pizza—it depends on what students prioritize. However, the data reveals a clear winner for each priority:
+
+| If You Prioritize... | Best Choice | Why |
+|----------------------|-------------|-----|
+| **Taste & Quality** | Joe's Brooklyn Pizza, Salvatore's | Local shops consistently win on perceived taste, crust quality, and ingredient freshness |
+| **Price & Convenience** | Domino's Pizza | Chains win on value perception, speed, and familiarity |
+| **Overall Balance** | Joe's Brooklyn Pizza | Best combination of quality scores with acceptable convenience |
+
+**The uncomfortable truth**: Most students *say* they want quality (local) but *choose* convenience (chains). This isn't hypocrisy—it's rational behavior under constraints.
+
+---
+
+### What Each Major Finding Actually Tells Us
+
+#### 1. The Local-Chain Paradox (fig9, fig20)
+**What we found**: 84% of students say they prefer local pizza, yet Domino's captures 27% market share—more than any local competitor.
+
+**What it means**: Students aren't lying about their preferences. They genuinely believe local pizza tastes better. But when it's 10 PM, they have $15, no car, and a paper due tomorrow, Domino's wins because it's *good enough* and *easy*. The paradox exists because stated preference measures what people *value*, while actual choice measures what they *do under constraints*.
+
+**Business implication**: A local pizzeria doesn't need to beat Domino's on taste (they already do). They need to match Domino's on convenience and price perception while maintaining quality.
+
+---
+
+#### 2. What Really Drives Pizza Choice (fig3, fig5, LDA results)
+**What we found**: Taste (94%), Balance (71%), Crust (64%), and Price (67%) rank highest. Appearance (27%) and Special Features (14%) rank lowest.
+
+**What it means**: Students are pragmatic, not pretentious. They want pizza that tastes good and doesn't break the bank. They don't care if it looks Instagram-worthy or has truffle oil. This is a fundamentally value-conscious market that respects quality but won't overpay for gimmicks.
+
+**The hierarchy is**: Taste → Price → Convenience → Everything Else
+
+**Business implication**: Invest in flavor and fair pricing. Don't waste money on fancy presentation or exotic toppings nobody asked for.
+
+---
+
+#### 3. The Transportation Effect (Chi-square: χ² = 11.43, p < 0.001)
+**What we found**: Students with personal transportation are 2.7× more likely to choose local pizza (44.7% vs 16.4%).
+
+**What it means**: This is the single strongest predictor of local vs chain choice. Access to a car removes the convenience advantage that chains have. Without a car, students are trapped in Domino's delivery radius. With a car, they can drive to Joe's Brooklyn.
+
+**Business implication**: Local pizzerias should prioritize locations accessible to students without cars, or invest heavily in delivery infrastructure. The 35% of students without transportation represent an underserved market.
+
+---
+
+#### 4. Price Sensitivity (Van Westendorp Analysis, fig35)
+**What we found**:
+- Students expect to pay ~$17 for a 16" pizza
+- They're willing to pay up to $25 for exceptional quality
+- Optimal price point for maximizing revenue: $20
+
+**What it means**: There's room to charge a premium—but only if quality justifies it. Students will pay $20-25 for genuinely better pizza, but they'll bolt to Domino's if a $22 local pizza doesn't taste noticeably better than a $14 chain pizza.
+
+**The math**: A $20 pizza with 78% purchase intent generates more revenue than a $16 pizza with 89% intent (revenue index: 15.5 vs 14.2).
+
+**Business implication**: Price at $18-20 for local pizzerias. Below $16 leaves money on the table. Above $25 prices out most students.
+
+---
+
+#### 5. The "Persuadable" Segment (fig23, Cluster Analysis)
+**What we found**: Two customer segments exist:
+- **Value Hunters** (larger segment): Price-sensitive, convenience-driven, lower loyalty
+- **Quality Seekers** (smaller segment): Taste-focused, willing to travel/wait, higher loyalty
+
+**What it means**: The Value Hunters are currently going to chains. They're persuadable if local pizzerias can match chain pricing or significantly exceed on taste. The Quality Seekers are already loyal to local—don't discount to them, as they'll pay full price.
+
+**Business implication**: Target marketing matters. Discounts and deals attract Value Hunters. Quality messaging retains Quality Seekers. Don't use the same strategy for both.
+
+---
+
+#### 6. Why Domino's Wins (Despite Lower Quality Perception)
+**What we found**: Domino's ranks #1 in market share but doesn't rank #1 on any quality metric. Students who choose Domino's rate taste as less important and convenience as more important than those who choose local.
+
+**What it means**: Domino's has optimized for the *decision moment*, not the *eating moment*. They win when students are deciding where to order, not when students are evaluating taste. Their advantages:
+- Brand recognition (everyone knows Domino's)
+- Predictable quality (never great, never terrible)
+- Aggressive pricing ($7.99 deals)
+- Fast, reliable delivery
+
+**Business implication**: To beat Domino's, local pizzerias must insert themselves into the decision moment. This means: app presence, social media, campus partnerships, and top-of-mind awareness. Being "better" doesn't matter if students don't think of you when they're hungry.
+
+---
+
+#### 7. Loyalty Is Not About Quality Alone (Propensity Score Analysis)
+**What we found**: Before controlling for confounders, local choosers appear more loyal. After matching on relevant variables, the loyalty difference disappears.
+
+**What it means**: Loyalty isn't caused by choosing local—it's caused by the underlying factors that lead someone to choose local (caring about taste, ordering frequently, having transportation). A chain customer with those same traits would be equally loyal.
+
+**Business implication**: Building loyalty requires understanding *why* customers choose you, not just *that* they chose you. Loyalty programs should reward the behaviors that correlate with loyalty (frequency, taste exploration), not just purchases.
+
+---
+
+#### 8. The Pickup Preference (71% pickup vs 24% delivery)
+**What we found**: Most students prefer pickup over delivery, and they're willing to drive/walk up to 29 minutes for the "best" pizza.
+
+**What it means**: Students aren't lazy—they're impatient and cost-conscious. Pickup is faster (no waiting for driver) and cheaper (no delivery fees/tips). The 71% pickup rate also suggests students want control over timing.
+
+**Business implication**: Invest in pickup infrastructure (parking, quick counter service, order-ahead systems) more than delivery. For delivery, compete on speed and eliminate fees where possible.
+
+---
+
+### What the Advanced Statistics Revealed
+
+| Method | Plain-Language Finding |
+|--------|------------------------|
+| **PCA** (fig29-30) | Students evaluate pizza on 4 mental dimensions: overall quality, value/practicality, core fundamentals, and special features. You don't need to win on all 4—pick 1-2 and dominate. |
+| **Cluster Analysis** (fig31-32) | There are really only 2 types of pizza customers (not 4 or 5). The segments overlap significantly—most students are somewhere in the middle, not extreme quality-seekers or value-hunters. |
+| **Cronbach's Alpha** (fig33) | The 9 importance factors are NOT measuring one underlying "pizza preference"—they're genuinely different constructs. Don't average them; analyze them separately. |
+| **Spearman Correlations** (fig34) | Price-sensitive students also value convenience (ρ = 0.51). Quality-focused students care about crust and balance together (ρ = 0.44). These pairings suggest two coherent mindsets. |
+| **Mediation Analysis** (fig36) | Pickup preference does NOT explain why taste-focused students choose local. The taste→local relationship is direct, not through pickup. Quality-seekers choose local because of taste itself, not because local offers better pickup options. |
+| **LDA** (fig37) | If you only knew two things about a student—how much they care about crust quality and how much they're willing to pay—you could predict their local/chain choice 69% of the time. |
+| **Market Simulation** (fig40) | A hypothetical new pizzeria with local-quality taste but chain-level convenience could capture 30%+ market share. The opportunity exists; no one has filled it yet. |
+
+---
+
+### The Bottom Line: Three Strategic Truths
+
+1. **Taste wins hearts, convenience wins orders.** Students know local pizza tastes better. But taste doesn't matter at 11 PM when Domino's delivers in 25 minutes and the local place closed at 9. The winner will be whoever can deliver local-quality pizza with chain-level convenience.
+
+2. **Transportation is destiny.** The biggest factor separating local choosers from chain choosers isn't taste preference, price sensitivity, or demographics—it's whether they have a car. Solving the transportation problem (better delivery, campus location, partnerships with ride services) could unlock the 35% of students currently trapped in chain delivery zones.
+
+3. **The $20 sweet spot exists.** Students will pay more for better pizza—but only up to a point. The data shows maximum revenue at $20 for a 16" pizza. Below that, you're leaving money on the table. Above that, you're losing customers to chains. Price strategically, not emotionally.
+
+---
+
+### How to Read the Rest of This Report
+
+| If you want to know... | Go to... |
+|------------------------|----------|
+| The statistical proof behind each claim | [Key Findings](#key-findings) |
+| Technical test details (p-values, coefficients) | [Advanced Statistical Analysis](#advanced-statistical-analysis) |
+| Competitive positioning and threats | [COMPETITIVE_ANALYSIS.md](reports/COMPETITIVE_ANALYSIS.md) |
+| Machine learning feature importance | [ML_MODEL_REPORT.md](reports/ML_MODEL_REPORT.md) |
+| Full methodology and assumptions | [METHODOLOGY.md](reports/METHODOLOGY.md) |
+| Visual summary for presentations | [EXECUTIVE_SUMMARY.md](reports/EXECUTIVE_SUMMARY.md) |
 
 ---
 
