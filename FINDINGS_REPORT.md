@@ -3,7 +3,7 @@
 **Study**: What is the Best Pizza Available to RIT Students?
 **Data Collected**: November 9-14, 2025
 **Valid Responses**: 161 (consented participants)
-**Last Updated**: November 25, 2025
+**Last Updated**: November 28, 2025
 
 ---
 
@@ -15,6 +15,7 @@
 | [STRATEGIC_ANALYSIS.md](reports/STRATEGIC_ANALYSIS.md) | **Winner declaration, unmet needs, model confidence, causal analysis** |
 | [COMPETITIVE_ANALYSIS.md](reports/COMPETITIVE_ANALYSIS.md) | Full competitive model and go-to-market strategy |
 | [ML_MODEL_REPORT.md](reports/ML_MODEL_REPORT.md) | Behavioral ML model (circular features excluded) |
+| [DIETARY_ANALYSIS.md](reports/DIETARY_ANALYSIS.md) | **Dietary accommodation preferences and market opportunity** |
 | [METHODOLOGY.md](reports/METHODOLOGY.md) | Statistical methods, assumptions, and references |
 | `outputs/` | Generated figures and CSV tables |
 
@@ -69,6 +70,14 @@
 - `fig38_chi_square_associations.png` - Categorical variable associations
 - `fig39_propensity_scores.png` - Propensity score distribution
 - `fig40_simulated_choice.png` - Market share simulation model
+
+**Dietary Accommodation Analysis (fig41-46)**:
+- `fig41_dietary_importance.png` - Dietary factor importance rankings
+- `fig42_dietary_distribution.png` - Full distribution of dietary importance ratings
+- `fig43_dietary_segments.png` - Dietary consciousness customer segmentation
+- `fig44_dietary_correlations.png` - Correlation heatmap between dietary factors
+- `fig45_dietary_vs_quality.png` - Comparison: quality vs dietary importance
+- `fig46_dietary_options_sought.png` - Dietary options students actively seek
 
 ---
 
@@ -384,6 +393,41 @@ This section synthesizes all 40+ statistical tests and visualizations into direc
 **Action Items**:
 - [x] Segment by income proxy (if available) or year in school → **Done: Year in school not significantly associated with local preference (χ² = 3.56, p = 0.965)**
 - [x] Analyze if Domino's wins on price despite local preference → **Done: Van Westendorp analysis confirms price sensitivity; Domino's captures value-seeking segment at $16-17 price point**
+
+---
+
+### Finding 6: Dietary Accommodations Are Low Priority
+**Status**: Complete | **Confidence**: High (p < 0.001)
+
+**Result**: Dietary accommodations are NOT a primary driver of pizza choice. Average importance: 1.67/5 across all 11 dietary factors.
+
+| Rank | Dietary Factor | Mean (1-5) | % High Importance | % Not Important |
+|------|----------------|------------|-------------------|-----------------|
+| 1 | Clear allergen labeling | 2.52 | 29.4% | 37.5% |
+| 2 | Allergen transparency | 1.95 | 11.9% | 50.0% |
+| 3 | Cross-contamination prevention | 1.81 | 11.2% | 64.4% |
+| ... | ... | ... | ... | ... |
+| 11 | Vegan/dairy-free cheese | 1.24 | 1.3% | 84.9% |
+
+**Customer Segments**:
+| Segment | % of Students | Definition |
+|---------|---------------|------------|
+| Dietary Indifferent | 73% | Mean score < 2.0 |
+| Moderately Concerned | 21% | Mean score 2.0-3.0 |
+| Dietary Conscious | 6% | Mean score > 3.0 |
+
+**Statistical Tests**:
+- Friedman Test: χ² = 318.18, p < 0.001 (dietary factors differ significantly)
+- Chi-Square (dietary segment vs restaurant choice): χ² = 1.25, p = 0.535 (NOT significant)
+
+**Interpretation**: Most students (73%) don't prioritize dietary accommodations. The most valued factors relate to allergen awareness, NOT specialized diets like vegan or gluten-free. Dietary consciousness does NOT predict local vs chain preference.
+
+**Action Items**:
+- [x] Analyze all 11 dietary factors → **Done: See [DIETARY_ANALYSIS.md](reports/DIETARY_ANALYSIS.md)**
+- [x] Segment by dietary consciousness → **Done: 3 segments identified**
+- [x] Test dietary vs restaurant preference association → **Done: No significant relationship (p = 0.535)**
+
+> **Full Analysis**: See [DIETARY_ANALYSIS.md](reports/DIETARY_ANALYSIS.md) for complete dietary accommodation analysis.
 
 ---
 
@@ -710,6 +754,7 @@ This section documents additional rigorous statistical methods applied to streng
 | 2025-11-24 | 4.0 | **Strategic Analysis**: Winner declaration, unmet needs, model confidence, variable justification, causal analysis |
 | 2025-11-25 | 5.0 | **Advanced Visuals**: 11 new presentation-quality seaborn visualizations (fig18-28) |
 | 2025-11-25 | 6.0 | **Advanced Statistics**: PCA, cluster validation, Cronbach's alpha, chi-square independence, Van Westendorp pricing, Spearman correlations, mediation analysis, LDA, Kruskal-Wallis, propensity scores, simulated choice model (fig29-40) |
+| 2025-11-28 | 7.0 | **Dietary Accommodation Analysis**: Full analysis of Q9 dietary factors, customer segmentation by dietary consciousness, correlation analysis, market opportunity assessment (fig41-46) |
 
 ---
 
@@ -728,14 +773,19 @@ This section documents additional rigorous statistical methods applied to streng
 | `scripts/generate_advanced_visuals.py` | Advanced seaborn visualizations (fig18-28) |
 | `scripts/advanced_statistics.py` | **PCA, clustering, reliability, mediation, LDA, propensity scores, choice modeling** |
 | `scripts/generate_advanced_stats_visuals.py` | **Advanced statistical visualizations (fig29-40)** |
+| `scripts/dietary_analysis.py` | **Dietary accommodation importance and segmentation analysis** |
+| `scripts/generate_dietary_visuals.py` | **Dietary accommodation visualizations (fig41-46)** |
 | `outputs/summary_statistics.csv` | Key metrics in machine-readable format |
 | `outputs/restaurant_rankings.csv` | Full restaurant preference data |
 | `outputs/feature_importance_consensus.csv` | ML feature importance |
+| `outputs/dietary_importance_rankings.csv` | **Dietary factor importance rankings** |
+| `outputs/dietary_segments.csv` | **Customer dietary consciousness segments** |
 | `outputs/fig1-6*.png` | Descriptive analysis visualizations |
 | `outputs/fig7-12*.png` | Competitive model visualizations |
 | `outputs/fig13-17*.png` | Machine learning visualizations |
 | `outputs/fig18-28*.png` | Advanced presentation visualizations |
 | `outputs/fig29-40*.png` | **Advanced statistical analysis visualizations** |
+| `outputs/fig41-46*.png` | **Dietary accommodation analysis visualizations** |
 
 ---
 
