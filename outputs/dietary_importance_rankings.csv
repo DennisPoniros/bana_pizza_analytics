@@ -1,0 +1,12 @@
+Rank,Factor,Short_Label,Mean,Median,Std,Pct_High_Importance,Pct_Moderate_Plus,Pct_Not_Important,N
+1,Clear allergen labeling,Allergen Labeling,2.51875,2.0,1.4750413063185424,29.375,45.625,37.5,160
+2,Allergen transparency,Allergen Transparency,1.95,1.5,1.191162425754062,11.875,27.500000000000004,50.0,160
+3,Separate prep areas (cross-contamination),Cross-Contam. Prevention,1.80625,1.0,1.2614101872021481,11.25,26.25,64.375,160
+4,Organic/non-GMO ingredients,Organic/Non-GMO,1.79375,1.0,1.0994388219771212,10.0,24.375,57.49999999999999,160
+5,Reduced sodium/healthier options,Reduced Sodium,1.75,1.0,0.9905211130872972,7.5,22.5,55.625,160
+6,Half-and-half pizzas (dietary flexibility),Half-and-Half Option,1.74375,1.0,1.2195827464636002,13.125,23.125,66.875,160
+7,Halal/kosher certification,Halal/Kosher,1.50625,1.0,0.9968306694959777,8.125,16.875,75.625,160
+8,Plant-based protein toppings,Plant-Based Protein,1.389937106918239,1.0,0.8412765291811433,4.40251572327044,8.80503144654088,76.10062893081762,159
+9,Gluten-free crust options,Gluten-Free,1.3125,1.0,0.7370474840271093,1.875,10.625,81.875,160
+10,Low-carb/keto options,Low-Carb/Keto,1.30625,1.0,0.718111385694553,1.875,7.5,80.0,160
+11,Vegan/dairy-free cheese,Vegan/Dairy-Free,1.2389937106918238,1.0,0.6209335509084193,1.257861635220126,7.547169811320755,84.90566037735849,159
