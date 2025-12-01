@@ -79,6 +79,14 @@
 - `fig45_dietary_vs_quality.png` - Comparison: quality vs dietary importance
 - `fig46_dietary_options_sought.png` - Dietary options students actively seek
 
+**Side Order Analysis (fig47-52)** *(NEW)*:
+- `fig47_side_order_rankings.png` - Side order popularity by mean score
+- `fig48_side_order_distributions.png` - Distribution histograms by item
+- `fig49_side_spending.png` - Spending histogram and segments
+- `fig50_sides_by_restaurant_type.png` - Local vs Chain comparison
+- `fig51_side_correlations.png` - Spearman correlation heatmap
+- `fig52_revenue_opportunity.png` - Strategic opportunity matrix
+
 ---
 
 ## Table of Contents
@@ -431,6 +439,52 @@ This section synthesizes all 40+ statistical tests and visualizations into direc
 
 ---
 
+### Finding 7: Side Order Revenue Opportunity
+**Status**: Complete | **Confidence**: High (p < 0.001)
+
+**Result**: Clear side order preferences exist with significant revenue potential. Average side spend is $9.38 per order.
+
+| Rank | Side Item | Mean (1-5) | % Likely to Order | % Definitely Order |
+|------|-----------|------------|-------------------|-------------------|
+| 1 | Garlic knots/bread | 3.55 | 65.4% | 20.8% |
+| 2 | Wings | 3.23 | 52.8% | 20.8% |
+| 3 | Mozzarella sticks | 2.79 | 38.4% | 6.9% |
+| 4 | Fries | 1.93 | 17.6% | 4.4% |
+| 5 | Cheesecake | 1.93 | 17.0% | 1.9% |
+| 6 | Onion rings | 1.89 | 15.1% | 0.6% |
+| 7 | Salad | 1.79 | 10.1% | 0.6% |
+| 8 | Fried calamari | 1.73 | 10.7% | 2.5% |
+| 9 | Bruschetta | 1.53 | 6.3% | 0.6% |
+| 10 | Stuffed mushrooms | 1.44 | 5.1% | 0.0% |
+
+**Side Spending Summary**:
+| Metric | Value |
+|--------|-------|
+| Mean spend | $9.38 |
+| Median spend | $10.00 |
+| Most common segment | $6-10 (47.7%) |
+| Monthly revenue potential | $23.35 per customer |
+
+**Statistical Tests**:
+- Friedman Test: χ² = 487.16, p < 0.001 (significant differences in preferences)
+- Binomial test (garlic knots): 65.4% likely, p < 0.001
+
+**Key Insights**:
+1. **Clear winners**: Garlic knots and wings dominate - these should be menu staples
+2. **Underperformers**: Bruschetta, stuffed mushrooms, and salad have <10% interest
+3. **Local choosers prefer wings** more than chain choosers (3.61 vs 3.11, p < 0.05)
+4. **Wing lovers spend more**: Correlation with side spend r = 0.452 (p < 0.001)
+
+**Business Recommendations**:
+- **MUST HAVE**: Garlic knots/bread, Wings
+- **CONSIDER**: Mozzarella sticks
+- **SKIP**: Bruschetta, stuffed mushrooms, calamari (low demand)
+- **Pricing**: Target $10-12 side menu range
+
+> **Full Analysis**: See outputs/side_order_rankings.csv and fig47-52 for detailed analysis.
+
+---
+
 ## Detailed Analysis
 
 ### Restaurant Competitive Landscape
@@ -734,11 +788,35 @@ This section documents additional rigorous statistical methods applied to streng
 | Propensity Score Matching | Confounding control | Loyalty difference disappears after matching |
 | Logit Choice Model | Market share simulation | New entrant could capture 30%+ share |
 
+### Data Quality Assessment
+
+**Overall Data Quality Score: 92/100 (EXCELLENT)**
+
+| Metric | Value | Assessment |
+|--------|-------|------------|
+| Total Responses | 164 | - |
+| Consented | 161 (98.2%) | Excellent |
+| Survey Completion | 98.8% | Excellent |
+| Data Completeness | 98.6% | Excellent |
+| Straightlining | 0.6% (1 case) | Minimal |
+| Rushed Responses | 0.6% (1 case) | Minimal |
+
+**Missing Data**: All 30 key variables have <5% missing data (minimal severity).
+
+**Power Analysis**:
+- Sample size (n=161) provides adequate power for medium-to-large effects
+- All reported significant findings exceed minimum detectable effect sizes
+- Effect size for local preference (Cohen's h = 0.75) is large
+
+> **Full Report**: See `outputs/data_quality_summary.csv` for details.
+
 ### Limitations
 1. **Sample**: RIT students only; not generalizable to broader population
 2. **Self-selection**: Survey respondents may be more pizza-engaged
 3. **Stated vs Revealed Preference**: Survey captures stated preferences, not actual behavior
 4. **Restaurant List**: Limited to 18 pre-selected options; may miss favorites
+5. **Seasonality**: Data collected in November only; pizza preferences may vary by season
+6. **Cross-sectional**: Single point-in-time measurement; no longitudinal trends
 
 ---
 
@@ -755,6 +833,7 @@ This section documents additional rigorous statistical methods applied to streng
 | 2025-11-25 | 5.0 | **Advanced Visuals**: 11 new presentation-quality seaborn visualizations (fig18-28) |
 | 2025-11-25 | 6.0 | **Advanced Statistics**: PCA, cluster validation, Cronbach's alpha, chi-square independence, Van Westendorp pricing, Spearman correlations, mediation analysis, LDA, Kruskal-Wallis, propensity scores, simulated choice model (fig29-40) |
 | 2025-11-28 | 7.0 | **Dietary Accommodation Analysis**: Full analysis of Q9 dietary factors, customer segmentation by dietary consciousness, correlation analysis, market opportunity assessment (fig41-46) |
+| 2025-12-01 | 8.0 | **Side Order Analysis**: Q25/Q26 side order preferences and spending analysis with customer segmentation (fig47-52). **Data Quality Report**: Missing data analysis, outlier detection, power analysis, quality scoring. |
 
 ---
 
@@ -773,19 +852,27 @@ This section documents additional rigorous statistical methods applied to streng
 | `scripts/generate_advanced_visuals.py` | Advanced seaborn visualizations (fig18-28) |
 | `scripts/advanced_statistics.py` | **PCA, clustering, reliability, mediation, LDA, propensity scores, choice modeling** |
 | `scripts/generate_advanced_stats_visuals.py` | **Advanced statistical visualizations (fig29-40)** |
-| `scripts/dietary_analysis.py` | **Dietary accommodation importance and segmentation analysis** |
-| `scripts/generate_dietary_visuals.py` | **Dietary accommodation visualizations (fig41-46)** |
+| `scripts/dietary_analysis.py` | Dietary accommodation importance and segmentation analysis |
+| `scripts/generate_dietary_visuals.py` | Dietary accommodation visualizations (fig41-46) |
+| `scripts/side_order_analysis.py` | **Side order preferences and revenue analysis (NEW)** |
+| `scripts/generate_side_order_visuals.py` | **Side order visualizations (fig47-52) (NEW)** |
+| `scripts/data_quality_analysis.py` | **Missing data, outliers, power analysis (NEW)** |
 | `outputs/summary_statistics.csv` | Key metrics in machine-readable format |
 | `outputs/restaurant_rankings.csv` | Full restaurant preference data |
 | `outputs/feature_importance_consensus.csv` | ML feature importance |
-| `outputs/dietary_importance_rankings.csv` | **Dietary factor importance rankings** |
-| `outputs/dietary_segments.csv` | **Customer dietary consciousness segments** |
+| `outputs/dietary_importance_rankings.csv` | Dietary factor importance rankings |
+| `outputs/dietary_segments.csv` | Customer dietary consciousness segments |
+| `outputs/side_order_rankings.csv` | **Side order popularity rankings (NEW)** |
+| `outputs/side_order_segments.csv` | **Side order customer segments (NEW)** |
+| `outputs/data_quality_missing.csv` | **Missing data by question (NEW)** |
+| `outputs/data_quality_summary.csv` | **Data quality metrics summary (NEW)** |
 | `outputs/fig1-6*.png` | Descriptive analysis visualizations |
 | `outputs/fig7-12*.png` | Competitive model visualizations |
 | `outputs/fig13-17*.png` | Machine learning visualizations |
 | `outputs/fig18-28*.png` | Advanced presentation visualizations |
-| `outputs/fig29-40*.png` | **Advanced statistical analysis visualizations** |
-| `outputs/fig41-46*.png` | **Dietary accommodation analysis visualizations** |
+| `outputs/fig29-40*.png` | Advanced statistical analysis visualizations |
+| `outputs/fig41-46*.png` | Dietary accommodation analysis visualizations |
+| `outputs/fig47-52*.png` | **Side order analysis visualizations (NEW)** |
 
 ---
 

@@ -1,0 +1,31 @@
+Question,Description,N_Missing,Pct_Missing
+Q3,Pizza preference frequency,2,1.2422360248447204
+Q4,Orders per month,1,0.6211180124223602
+Q5_1,Taste importance,1,0.6211180124223602
+Q5_2,Balance importance,1,0.6211180124223602
+Q5_3,Crust importance,1,0.6211180124223602
+Q5_4,Freshness importance,1,0.6211180124223602
+Q5_5,Price importance,1,0.6211180124223602
+Q5_6,Ingredient importance,1,0.6211180124223602
+Q5_7,Convenience importance,1,0.6211180124223602
+Q5_8,Appearance importance,1,0.6211180124223602
+Q5_9,Special features importance,1,0.6211180124223602
+Q9_1,Gluten-free importance,1,0.6211180124223602
+Q9_2,Vegan cheese importance,2,1.2422360248447204
+Q9_3,Plant-based meats importance,1,0.6211180124223602
+Q14_1,Expected delivery time,3,1.8633540372670807
+Q14_2,Expected pickup time,5,3.1055900621118013
+Q15_1,Willing delivery time,2,1.2422360248447204
+Q15_2,Willing pickup time,5,3.1055900621118013
+Q17,Local vs Chain preference,2,1.2422360248447204
+Q21_1,Expected price,1,0.6211180124223602
+Q21_2,Max willing price,1,0.6211180124223602
+Q25_1,Fries likelihood,2,1.2422360248447204
+Q26,Side spend,6,3.7267080745341614
+Q28,Favorite restaurant,5,3.1055900621118013
+Q29,Loyalty score,2,1.2422360248447204
+Q30,Age,2,1.2422360248447204
+Q31,Gender,2,1.2422360248447204
+Q33,Year in school,3,1.8633540372670807
+Q35,Housing,6,3.7267080745341614
+Q36,Transportation,3,1.8633540372670807
