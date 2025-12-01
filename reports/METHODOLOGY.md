@@ -468,6 +468,56 @@ The following advanced methods were added in v6.0 to strengthen analytical rigor
 
 ---
 
+### Side Order Analysis (v8.0)
+
+**Purpose**: Identify revenue opportunities from side orders.
+
+**Method**:
+- Friedman test for preference differences across 10 side items
+- Binomial test for top item (majority preference)
+- K-means clustering for customer segmentation
+- Spearman correlations for side-spend relationships
+
+**Results**:
+| Side Item | Mean (1-5) | % Likely | Spend Correlation |
+|-----------|------------|----------|-------------------|
+| Garlic knots | 3.55 | 65.4% | +0.155 |
+| Wings | 3.23 | 52.8% | +0.452** |
+| Mozz sticks | 2.79 | 38.4% | +0.245* |
+
+**Key Finding**: Friedman χ² = 487.16, p < 0.001 — side preferences differ significantly.
+
+---
+
+### Data Quality Analysis (v8.0)
+
+**Purpose**: Assess data completeness, identify outliers, and validate power.
+
+**Methods**:
+1. **Missing Data Analysis**: Pairwise assessment across 30 key variables
+2. **Outlier Detection**: IQR method (1.5x threshold)
+3. **Straightlining Detection**: Identical responses across Q5 items
+4. **Response Time Analysis**: Flagging rushed responses (<2 min)
+5. **Power Analysis**: Post-hoc calculation using Cohen's h for proportions
+
+**Results**:
+| Metric | Value | Assessment |
+|--------|-------|------------|
+| Data Completeness | 98.6% | Excellent |
+| Severe Missing (>10%) | 0 variables | Excellent |
+| Straightliners | 1 (0.6%) | Minimal |
+| Rushed Responses | 1 (0.6%) | Minimal |
+| Power (local pref) | >99% | Adequate |
+
+**Minimum Detectable Effect Sizes** (80% power, α=0.05):
+- Two-group mean comparison: d = 0.22
+- Correlation: r = 0.22
+- Proportion difference: 15%
+
+> Reference: Cohen, J. (1988). *Statistical Power Analysis for the Behavioral Sciences*.
+
+---
+
 ## Assumptions & Diagnostics
 
 ### Summary of Assumption Checks
@@ -581,4 +631,4 @@ Is the data categorical or continuous?
 
 ---
 
-*This methodology document accompanies the Findings Report and pizza_analysis.py script.*
+*This methodology document accompanies the Findings Report. Last updated: v8.0 (December 2025).*
